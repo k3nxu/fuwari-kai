@@ -16,11 +16,7 @@ html.astro-transitioning #toc-wrapper {
     pointer-events: none;
 }
 
-/* Keep cat visible and static during View Transitions */
-html.astro-transitioning .cat {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+
 
 /* Page transition animations with Swup (fallback for browsers without View Transitions) */
 /* Match View Transitions behavior: fade out quickly, then fade in from below */
@@ -152,19 +148,11 @@ a:focus-visible, button:focus-visible {
 ::view-transition-group(banner-credit),
 ::view-transition-group(main-content),
 ::view-transition-group(toc-content),
-::view-transition-group(progress-bar),
-::view-transition-group(cat-widget) {
+::view-transition-group(progress-bar) {
     animation: none;
 }
 
-/* Cat widget - keep static during View Transition (no cross-fade flicker).
-   The element is persisted via transition:persist, so old/new are identical.
-   Use mix-blend-mode: normal to prevent plus-lighter doubling of old+new. */
-::view-transition-old(cat-widget),
-::view-transition-new(cat-widget) {
-    animation: none;
-    mix-blend-mode: normal;
-}
+
 
 /* Progress bar - keep visible throughout View Transition.
    Hide old snapshot to prevent doubling, show new without animation. */

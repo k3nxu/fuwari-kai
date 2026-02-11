@@ -18,7 +18,7 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import { getCollection } from "astro:content";
-import CatWidget from '../components/widget/Cat.astro'
+
 
 interface Props {
 	title?: string;
@@ -316,10 +316,7 @@ const bannerOffset =
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
 
-		<!-- Cat widget - persisted through View Transitions to stay static -->
-		<div class="fixed inset-0 pointer-events-none z-[10000]" transition:name="cat-widget" transition:persist>
-			<CatWidget />
-		</div>
+
 
 		<!-- FOUC script disabled for debugging -->
 	</body>
@@ -1000,13 +997,7 @@ function setupTransitionHandlers() {
 			// them during head swap. The existing favicons are already in the current
 			// head and don't change between pages.
 			newDoc.head.querySelectorAll('link[rel="icon"]').forEach((el: Element) => el.remove());
-			// Strip img src from persisted cat widget in new document to prevent
-			// the browser from re-fetching cat.avif when the new body enters the DOM.
-			// transition:persist replaces this with the old (already loaded) element.
-			const newCat = newDoc.querySelector('[data-astro-transition-persist="cat-widget"]');
-			if (newCat) {
-				newCat.querySelectorAll('img').forEach((img: HTMLImageElement) => img.removeAttribute('src'));
-			}
+
 		}
 	});
 
