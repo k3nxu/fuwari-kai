@@ -89,3 +89,14 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// theme: "github-dark",
 	themes: ["github-dark", "github-dark-dimmed"],
 };
+
+export const tagMapping: Record<string, string> = {
+  'demo': '演示',
+  'example': '示例',
+  'tutorial': '教程',
+};
+
+export const categoryMapping: Record<string, string> = {
+  'examples': '示例',
+  'guides': '指南',
+};

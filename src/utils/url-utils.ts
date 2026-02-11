@@ -1,5 +1,6 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
+import { categoryMapping, tagMapping } from "../config";
 
 export function pathsEqual(path1: string, path2: string) {
 	const normalizedPath1 = path1.replace(/^\/|\/$/g, "").toLowerCase();
@@ -12,13 +13,16 @@ function joinUrl(...parts: string[]): string {
 	return joined.replace(/\/+/g, "/");
 }
 
+export function url(path: string) {
+	return joinUrl("", import.meta.env.BASE_URL, path);
+}
+
 export function getPostUrlBySlug(slug: string): string {
 	return url(`/posts/${slug}/`);
 }
 
 export function getTagUrl(tag: string): string {
-	if (!tag) return url("/archive/");
-	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);
+	return url(`/tags/${tag}/`);
 }
 
 export function getCategoryUrl(category: string | null): string {
@@ -27,8 +31,16 @@ export function getCategoryUrl(category: string | null): string {
 		category.trim() === "" ||
 		category.trim().toLowerCase() === i18n(I18nKey.uncategorized).toLowerCase()
 	)
-		return url("/archive/?uncategorized=true");
-	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
+		return url("/categories/uncategorized/");
+	return url(`/categories/${category.trim()}/`);
+}
+
+export function getTagName(tag: string): string {
+	return tagMapping[tag] || tag;
+}
+
+export function getCategoryName(category: string): string {
+	return categoryMapping[category] || category;
 }
 
 export function getDir(path: string): string {
@@ -37,8 +49,4 @@ export function getDir(path: string): string {
 		return "/";
 	}
 	return path.substring(0, lastSlashIndex + 1);
-}
-
-export function url(path: string) {
-	return joinUrl("", import.meta.env.BASE_URL, path);
 }
