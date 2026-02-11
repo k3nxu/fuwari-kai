@@ -36,11 +36,11 @@ export function getCategoryUrl(category: string | null): string {
 }
 
 export function getTagName(tag: string): string {
-	return tagMapping[tag] || tag;
+	return tagMapping[tag] || tagMapping[tag.toLowerCase()] || tag;
 }
 
 export function getCategoryName(category: string): string {
-	return categoryMapping[category] || category;
+	return categoryMapping[category] || categoryMapping[category.toLowerCase()] || category;
 }
 
 export function getDir(path: string): string {
