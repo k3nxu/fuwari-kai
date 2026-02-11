@@ -86,7 +86,18 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm format`              | Format your code using Biome                        |
 | `pnpm new-post <filename>` | Create a new post                                   |
 | `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
-| `pnpm astro --help`        | Get help using the Astro CLI                        |
+| `pnpm ascii`               | Show the ascii art of the theme                     |
+
+## 🚀 Usage & Deployment
+
+This theme is designed to work with a **separated content repository**.
+
+- **Theme Repo (This)**: Contains the code, styles, and logic.
+- **Content Repo ([Astro_Fuwari_Content](https://github.com/k3nxu/Astro_Fuwari_Content))**: Contains your posts, images, and **site configuration**.
+
+**You should NOT configure the site in this repository.** All configuration (including `src/config.ts`) is overlaid from the content repository during deployment.
+
+Please refer to the [Content Repository README](https://github.com/k3nxu/Astro_Fuwari_Content) for detailed usage and deployment instructions.
 
 ## ✏️ Contributing
 
