@@ -29,8 +29,8 @@ import { rehypeLazyLoadImage } from "./src/plugins/rehype-lazy-load-image.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://fuwari.vercel.app/",
-	base: "/",
+	site: "https://k3nxu.github.io",
+	base: "/fuwari-kai",
 	trailingSlash: "always",
 	build: {
 		inlineStylesheets: 'auto',
@@ -118,7 +118,7 @@ export default defineConfig({
 				showCopyToClipboardButton: false,
 			}
 		}),
-        svelte(),
+		svelte(),
 		sitemap(),
 	],
 	markdown: {
