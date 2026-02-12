@@ -40,7 +40,11 @@ export function getTagName(tag: string): string {
 }
 
 export function getCategoryName(category: string): string {
-	return categoryMapping[category] || categoryMapping[category.toLowerCase()] || category;
+	return (
+		categoryMapping[category] ||
+		categoryMapping[category.toLowerCase()] ||
+		category
+	);
 }
 
 export function getDir(path: string): string {

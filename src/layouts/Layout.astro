@@ -1,6 +1,7 @@
 ---
 import "../styles/fonts.css";
 
+import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig } from "@/config";
@@ -17,8 +18,6 @@ import {
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
-import { getCollection } from "astro:content";
-
 
 interface Props {
 	title?: string;
@@ -30,43 +29,43 @@ interface Props {
 
 let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
 
-let ogImage: string | undefined = undefined;
+let ogImage: string | undefined;
 
-if (banner && typeof banner === 'string' && banner.trim() !== '') {
-  if (banner.startsWith('http://') || banner.startsWith('https://')) {
-    ogImage = banner;
-  } else {
-    ogImage = new URL(banner, Astro.site || Astro.url.origin).href;
-  }
+if (banner && typeof banner === "string" && banner.trim() !== "") {
+	if (banner.startsWith("http://") || banner.startsWith("https://")) {
+		ogImage = banner;
+	} else {
+		ogImage = new URL(banner, Astro.site || Astro.url.origin).href;
+	}
 }
 
-const slug = Astro.url.pathname.split('/').filter(Boolean).pop();
+const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
 
 interface PageData {
-  published?: Date | string;
-  updated?: Date | string;
-  tags?: string[];
+	published?: Date | string;
+	updated?: Date | string;
+	tags?: string[];
 }
 
 let pageData: PageData = {};
 
 try {
-  const allEntries = await getCollection("posts");
-  const entry = allEntries.find(e => e.id === slug);
-  if (entry) pageData = entry.data as PageData;
+	const allEntries = await getCollection("posts");
+	const entry = allEntries.find((e) => e.id === slug);
+	if (entry) pageData = entry.data as PageData;
 } catch (e) {
-  // No data, silent fail
+	// No data, silent fail
 }
 
 const formatDate = (date: Date | string | undefined): string | null => {
-  if (!date) return null;
-  if (date instanceof Date) {
-    return date.toISOString().split('T')[0];
-  }
-  if (typeof date === 'string') {
-    return date.split('T')[0];
-  }
-  return null;
+	if (!date) return null;
+	if (date instanceof Date) {
+		return date.toISOString().split("T")[0];
+	}
+	if (typeof date === "string") {
+		return date.split("T")[0];
+	}
+	return null;
 };
 
 const publishedDate = formatDate(pageData.published);

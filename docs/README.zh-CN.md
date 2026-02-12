@@ -1,6 +1,6 @@
 # Fuwari
 
-[![Build Status](https://github.com/k3nxu/fuwari-kai/actions/workflows/build.yml/badge.svg)](https://github.com/k3nxu/fuwari-kai/actions/workflows/build.yml)
+[![Deploy with GitHub Actions](https://github.com/saicaca/fuwari/actions/workflows/deploy.yml/badge.svg)](https://github.com/saicaca/fuwari/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 基于 [Astro](https://astro.build/)、[TailwindCSS](https://tailwindcss.com/) 和 [Svelte](https://svelte.dev/) 构建的静态博客主题。

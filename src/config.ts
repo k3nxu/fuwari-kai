@@ -90,13 +90,13 @@ const Config = {
 	},
 	mappings: {
 		tags: {
-			'demo': '演示',
-			'example': '示例',
-			'tutorial': '教程',
+			demo: "演示",
+			example: "示例",
+			tutorial: "教程",
 		} as Record<string, string>,
 		categories: {
-			'examples': '示例',
-			'guides': '指南',
+			examples: "示例",
+			guides: "指南",
 		} as Record<string, string>,
 	},
 };
@@ -121,4 +121,5 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = Config.expressiveCode;
 export const tagMapping: Record<string, string> = Config.mappings.tags;
 
 // Category mapping (slug -> display name)
-export const categoryMapping: Record<string, string> = Config.mappings.categories;
+export const categoryMapping: Record<string, string> =
+	Config.mappings.categories;

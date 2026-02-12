@@ -7,23 +7,25 @@ import { getSortedPostsList } from "@utils/content-utils";
 import { getTagName } from "@utils/url-utils";
 
 export async function getStaticPaths() {
-    const posts = await getSortedPostsList();
-    const allTags = new Set<string>();
-    posts.forEach(post => {
-        post.data.tags.forEach(tag => allTags.add(tag));
-    });
+	const posts = await getSortedPostsList();
+	const allTags = new Set<string>();
+	posts.forEach((post) => {
+		post.data.tags.forEach((tag) => {
+			allTags.add(tag);
+		});
+	});
 
-    return Array.from(allTags).map(tag => {
-        return {
-            params: { tag },
-        };
-    });
+	return Array.from(allTags).map((tag) => {
+		return {
+			params: { tag },
+		};
+	});
 }
 
 const { tag } = Astro.params as { tag: string };
 
 const posts = await getSortedPostsList();
-const filteredPosts = posts.filter(p => p.data.tags.includes(tag));
+const filteredPosts = posts.filter((p) => p.data.tags.includes(tag));
 const tagName = getTagName(tag);
 ---
 

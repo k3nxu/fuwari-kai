@@ -7,36 +7,39 @@ import { getSortedPostsList } from "@utils/content-utils";
 import { getCategoryName } from "@utils/url-utils";
 
 export async function getStaticPaths() {
-    const posts = await getSortedPostsList();
-    const allCategories = new Set<string>();
-    posts.forEach(post => {
-        const category = post.data.category;
-        if (category && category.trim() !== "") {
-            allCategories.add(category.trim());
-        } else {
-            allCategories.add("uncategorized");
-        }
-    });
+	const posts = await getSortedPostsList();
+	const allCategories = new Set<string>();
+	posts.forEach((post) => {
+		const category = post.data.category;
+		if (category && category.trim() !== "") {
+			allCategories.add(category.trim());
+		} else {
+			allCategories.add("uncategorized");
+		}
+	});
 
-    return Array.from(allCategories).map(category => {
-        return {
-            params: { category },
-        };
-    });
+	return Array.from(allCategories).map((category) => {
+		return {
+			params: { category },
+		};
+	});
 }
 
 const { category } = Astro.params as { category: string };
 
 const posts = await getSortedPostsList();
-const filteredPosts = posts.filter(p => {
-    const postCat = p.data.category;
-    if (category === "uncategorized") {
-        return !postCat || postCat.trim() === "";
-    }
-    return postCat && postCat.trim() === category;
+const filteredPosts = posts.filter((p) => {
+	const postCat = p.data.category;
+	if (category === "uncategorized") {
+		return !postCat || postCat.trim() === "";
+	}
+	return postCat && postCat.trim() === category;
 });
 
-const categoryName = category === "uncategorized" ? i18n(I18nKey.uncategorized) : getCategoryName(category);
+const categoryName =
+	category === "uncategorized"
+		? i18n(I18nKey.uncategorized)
+		: getCategoryName(category);
 ---
 
 <MainGridLayout title={`${i18n(I18nKey.archive)} - ${categoryName}`}>

@@ -19,12 +19,12 @@ const page = {
 	currentPage: 1,
 	lastPage: totalPages,
 	url: {
-		current: '/',
+		current: "/",
 		prev: undefined,
-		next: totalPages > 1 ? '/2' : undefined,
-		first: '/',
-		last: totalPages > 1 ? `/${totalPages}` : '/'
-	}
+		next: totalPages > 1 ? "/2" : undefined,
+		first: "/",
+		last: totalPages > 1 ? `/${totalPages}` : "/",
+	},
 };
 
 const len = page.data.length;
