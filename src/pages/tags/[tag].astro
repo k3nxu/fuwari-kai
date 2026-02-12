@@ -27,6 +27,6 @@ const filteredPosts = posts.filter(p => p.data.tags.includes(tag));
 const tagName = getTagName(tag);
 ---
 
-<MainGridLayout title={i18n(I18nKey.archive)} subtitle={tagName}>
+<MainGridLayout title={`${i18n(I18nKey.archive)} - ${tagName}`}>
     <ArchivePanel sortedPosts={filteredPosts} client:only="svelte"></ArchivePanel>
 </MainGridLayout>

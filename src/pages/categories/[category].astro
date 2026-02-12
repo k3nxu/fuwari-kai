@@ -39,6 +39,6 @@ const filteredPosts = posts.filter(p => {
 const categoryName = category === "uncategorized" ? i18n(I18nKey.uncategorized) : getCategoryName(category);
 ---
 
-<MainGridLayout title={i18n(I18nKey.archive)} subtitle={categoryName}>
+<MainGridLayout title={`${i18n(I18nKey.archive)} - ${categoryName}`}>
     <ArchivePanel sortedPosts={filteredPosts} client:only="svelte"></ArchivePanel>
 </MainGridLayout>
