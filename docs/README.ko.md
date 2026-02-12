@@ -1,6 +1,6 @@
 # Fuwari
 
-[![Deploy with GitHub Actions](https://github.com/saicaca/fuwari/actions/workflows/deploy.yml/badge.svg)](https://github.com/saicaca/fuwari/actions/workflows/deploy.yml)
+[![Build Status](https://github.com/k3nxu/fuwari-kai/actions/workflows/build.yml/badge.svg)](https://github.com/k3nxu/fuwari-kai/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A static blog theme built with [Astro](https://astro.build/), [TailwindCSS](https://tailwindcss.com/) and [Svelte](https://svelte.dev/).
