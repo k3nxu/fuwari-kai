@@ -102,10 +102,23 @@ const Config = {
 };
 
 // Export individual configs for backward compatibility with the theme
+// Site configuration
 export const siteConfig: SiteConfig = Config.site as SiteConfig;
+
+// Navigation bar configuration
 export const navBarConfig: NavBarConfig = Config.navBar;
+
+// Profile configuration
 export const profileConfig: ProfileConfig = Config.profile;
+
+// License configuration
 export const licenseConfig: LicenseConfig = Config.license;
+
+// Expressive Code configuration
 export const expressiveCodeConfig: ExpressiveCodeConfig = Config.expressiveCode;
+
+// Tag mapping (slug -> display name)
 export const tagMapping: Record<string, string> = Config.mappings.tags;
+
+// Category mapping (slug -> display name)
 export const categoryMapping: Record<string, string> = Config.mappings.categories;
