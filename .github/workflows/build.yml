@@ -1,4 +1,4 @@
-name: Build and Check
+name: Build and Deploy
 
 on:
   push:
@@ -83,3 +83,32 @@ jobs:
 
       - name: Run Astro Build
         run: pnpm run build
+
+      - name: Upload artifact
+        if: matrix.node == 22
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: github-pages
+          path: dist
+
+  # Stage 4: Deploy (needs build to pass)
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to GitHub Pages
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: github-pages
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@4f9cc665385af51af238b6ca93feea45db9f7b18 # v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
